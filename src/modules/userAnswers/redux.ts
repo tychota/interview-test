@@ -5,7 +5,7 @@ import {
   createStandardAction
 } from "typesafe-actions";
 
-interface Answer {
+export interface Answer {
   value: number;
 }
 
@@ -18,7 +18,7 @@ interface Answer {
 // - postAnswerActions.request() contains the answer to be posted in for of an object {10: {value: 150}} where 10 is the question id
 // - postAnswerActions.success() contains the answer from the backend, null in this case
 // - postAnswerActions.failure() contains the answer from the backend in case of error
-const postAnswerActions = createAsyncAction(
+export const postAnswerActions = createAsyncAction(
   "ANSWER/POST_REQUEST",
   "ANSWER/POST_SUCCESS",
   "ANSWER/POST_FAILURE",
@@ -26,7 +26,7 @@ const postAnswerActions = createAsyncAction(
 )<{ [questionId: number]: Answer }, null, Error, string>();
 
 // This action let you set the answer value once you release the slider
-const setAnswer = createStandardAction("ANSWER/SET_VALUE")<{
+export const setAnswer = createStandardAction("ANSWER/SET_VALUE")<{
   [id: string]: Answer;
 }>();
 

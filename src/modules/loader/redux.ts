@@ -5,8 +5,10 @@ import {
 } from "typesafe-actions";
 
 // This action let you set the answer value once you release the slider
-const displayLoader = createStandardAction("LOADER/DISPLAY")<undefined>();
-const hideLoader = createStandardAction("LOADER/HIDE")<undefined>();
+export const displayLoader = createStandardAction("LOADER/DISPLAY")<
+  undefined
+>();
+export const hideLoader = createStandardAction("LOADER/HIDE")<undefined>();
 
 type Action = ActionType<typeof displayLoader> | ActionType<typeof hideLoader>;
 interface State {

@@ -4,6 +4,8 @@ import { StateType } from "typesafe-actions";
 
 import { answerReducer } from "./userAnswers/redux";
 import { loaderReducer } from "./loader/redux";
+import { all } from "@redux-saga/core/effects";
+import { answerSaga } from "./userAnswers/saga";
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -17,4 +19,7 @@ export type State = StateType<typeof rootReducer>;
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 // then run the saga
-sagaMiddleware.run(function*() {});
+function* rootSaga() {
+  yield all([answerSaga]);
+}
+sagaMiddleware.run(rootSaga);
